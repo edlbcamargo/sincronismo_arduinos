@@ -1,25 +1,23 @@
-#define readerPin A5 //Porta que deveria ler o pulso PWM. 
-#define PWMPin  6; //Porta responsável pela PWM (Pulse Width Modulation).
-int analogPin = A0; //Porta responsável por ler a resistência do potênciometro linear de 10k ohm.
-int resistencia; //Variável responsável por memorizar o valor da resistência.
-int sinal; //Variável responsável por memorizar o valor do sinal PWM.
+#define analogPin A0 //Porta responsável por ler os sinais da PWM.
+int PWMPin = 9;
+unsigned long taxa; //Variável responsável por memorizar o valor da PWM.
+int sinal = 50;
 
 void setup() {
-  pinMode(analogPin, INPUT); //Configura o pino A0 como entrada. Opcional.
-  pinMode(PWMPin, OUTPUT); //Configura o pino 6 como saída. 
   Serial.begin(9600);
-  Serial.println("Início da leitura: ");
+  pinMode(analogPin, INPUT);
+  pinMode(PWMPin, OUTPUT);
+  Serial.println("Início da leitura");
 
 }
 
 void loop() {
-  resistencia = analogRead(analogPin);
-  resistencia = map(resistencia, 0, 1023, 0, 255); //Esta função matemática mapeia um valor analógico para 8 bits (0 a 255).
-  //Outra opção é dividir o valor da resistência por 4 ( resistencia = resistencia/4), pois este é um valor inteiro.
-  analogWrite(PWMPin, resistencia); //Envia o valor da PWM para o LED.
-  sinal = analogRead(readerPin); //Lê o valor da PWM. 
-  Serial.println(sinal);
-  delay(500); //opcional
   
-  
+  sinal = sinal*2.55;
+  analogWrite(PWMPin, sinal);
+  delay(100);
+  if (pulseInLong(analogPin, HIGH) > 50){
+  taxa = pulseInLong(analogPin, HIGH);
+  Serial.println(taxa);
+  }
 }
