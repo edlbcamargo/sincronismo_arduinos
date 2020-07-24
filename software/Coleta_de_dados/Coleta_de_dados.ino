@@ -10,8 +10,8 @@ void setup() {
 
 void loop() {
   if (pulseInLong(analogPin, HIGH)){
-  sinal = pulseInLong(analogPin, HIGH);
-  Serial.println(sinal);
+    sinal = pulseInLong(analogPin, HIGH);
+    Serial.println(sinal);
   
   }
   

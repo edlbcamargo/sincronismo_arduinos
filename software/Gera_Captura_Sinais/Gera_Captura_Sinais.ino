@@ -14,10 +14,13 @@ void setup() {
 void loop() {
   
   sinal = sinal*2.55;
+  if (sinal > 255){ // analogWrite() aceita valores de no maximo 255
+    sinal = 0;
+  }
   analogWrite(PWMPin, sinal);
   delay(100);
   if (pulseInLong(analogPin, HIGH) > 50){
-  taxa = pulseInLong(analogPin, HIGH);
-  Serial.println(taxa);
+    taxa = pulseInLong(analogPin, HIGH);
+    Serial.println(taxa);
   }
 }
