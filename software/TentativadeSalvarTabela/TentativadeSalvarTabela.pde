@@ -28,10 +28,10 @@ void draw(){
     novaLinha.setInt("Sinal", sinalIn);
     numCount++;
     //println(sinalIn);
-    println(numCount);
+    //println(numCount);
   } 
   if (numCount == numLeituras){
-    saveTable( table, "arquivo6.csv");
+    saveTable( table, "data/arquivo1.csv");
     println("Finalizado");
   }
 }
