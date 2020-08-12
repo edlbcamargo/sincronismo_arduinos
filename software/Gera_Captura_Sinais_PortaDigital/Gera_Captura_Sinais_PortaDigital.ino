@@ -15,14 +15,9 @@ void setup() {
 }
 
 void loop() {
-  if (cont == 0){ //Condicional para evitar que o valor do sinal cresça indefinidamente.
-    sinal = sinal*2.55;
-    cont++;
-  }
-  //A condicional abaixo corrige o valor do sinal se maior que 255. Opcional, o condicional 
-  //acima já evita que iso ocorra.
+  //A condicional abaixo corrige o valor do sinal se maior que 255.
   if (sinal > 255){
-    sinal = 0;
+    sinal = 50;
   }
   analogWrite(PWMpin, sinal); //Evia o valor do PWM.
   delay(100); //Espera 0,1 segundos.
@@ -32,4 +27,6 @@ void loop() {
     //mede o tempo em que a entrada da porta ficou HIGH.
     Serial.println(taxa);//Exibe no SerialMonitor o tempo lido.     
   }
+
+  sinal = sinal + 10; // altera duty cycle a ser usado no proximo loop
 }
