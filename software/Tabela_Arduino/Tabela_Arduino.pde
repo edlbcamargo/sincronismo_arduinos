@@ -1,4 +1,4 @@
-//Processing tem uma estrutura muito parecida com a IDE arduino.
+//Processing tem uma estrutura muito parecida com a IDE arduino
 //A ideia deste código exemplo é captar os sinais gerados porum arduíno e gerar uma tabela .csv que contenha o sinal captado 
 //por mais de um arduino.
 
