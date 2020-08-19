@@ -10,26 +10,22 @@ void setup() {
   Serial.begin(9600); //Inicializa o SerialMonitor.
   pinMode(Recpin, INPUT); //Define o Recpin (8) como entrada que lerá os sinais.
   pinMode(PWMpin, OUTPUT); //Define o PWMpin como saída, emissor da PWM.
-  Serial.println("Início da leitura"); //Marca o início dos dados.
+  
 
 }
 
 void loop() {
-  if (cont == 0){ //Condicional para evitar que o valor do sinal cresça indefinidamente.
-    sinal = sinal*2.55;
-    cont++;
-  }
-  //A condicional abaixo corrige o valor do sinal se maior que 255. Opcional, o condicional 
-  //acima já evita que iso ocorra.
+  //A condicional abaixo corrige o valor do sinal se maior que 255.
   if (sinal > 255){
-    sinal = 0;
+    sinal = 50;
   }
   analogWrite(PWMpin, sinal); //Evia o valor do PWM.
-  delay(100); //Espera 0,1 segundos.
   
   if (pulseInLong(Recpin, HIGH)){//Verifica se há sinal HIGH a ser recebido na porta.
     taxa = pulseInLong(Recpin, HIGH); //Grava o valor lido pela função pulseInLong, que 
     //mede o tempo em que a entrada da porta ficou HIGH.
     Serial.println(taxa);//Exibe no SerialMonitor o tempo lido.     
   }
+
+  sinal = sinal + 10; // altera duty cycle a ser usado no proximo loop
 }
