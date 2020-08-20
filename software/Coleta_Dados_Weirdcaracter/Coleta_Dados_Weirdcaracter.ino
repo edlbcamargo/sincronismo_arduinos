@@ -14,7 +14,7 @@ void setup() {
 void loop() {
   if (pulseInLong(Recpin, HIGH)){ //Verifica se há sinal a receber.
     sinal = pulseInLong(Recpin, HIGH); //Armazena o tempo (ms).
-    if (cont == 0){ //Apareceu um caractere estranho na primeira leitura dos sinais enviados.
+    if (cont == 0){ //Apareceu um caractere estranho na primeira leitura dos sinais enviados. Ainda não sei se é necessário.
       String change = String(sinal); //Precisa trocar o tipo da variável para remover o caracter. 
       change.remove(1, 1); //Este método remove de uma String um caracter (direita) a partir da primeira posição (esquerda).
       sinal = change.toInt(); //Para retornar o valor para int.
