@@ -20,8 +20,7 @@ void loop() {
     sinal = 50;
   }
   analogWrite(PWMpin, sinal); //Evia o valor do PWM.
-  delay(100); //Espera 0,1 segundos.
-  
+ 
   if (pulseInLong(Recpin, HIGH)){//Verifica se há sinal HIGH a ser recebido na porta.
     taxa = pulseInLong(Recpin, HIGH); //Grava o valor lido pela função pulseInLong, que 
     //mede o tempo em que a entrada da porta ficou HIGH.
