@@ -10,7 +10,7 @@ void setup() {
   Serial.begin(9600); //Inicializa o SerialMonitor.
   pinMode(Recpin, INPUT); //Define o Recpin (8) como entrada que lerá os sinais.
   pinMode(PWMpin, OUTPUT); //Define o PWMpin como saída, emissor da PWM.
-  Serial.println("Início da leitura"); //Marca o início dos dados.
+  //Serial.println("Início da leitura"); //Marca o início dos dados.
 
 }
 
