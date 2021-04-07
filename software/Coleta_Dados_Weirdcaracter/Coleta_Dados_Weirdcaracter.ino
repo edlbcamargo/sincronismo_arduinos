@@ -2,7 +2,6 @@
 // pulseInLong. 
 int Recpin = 4; //Porta responsável por ler os sinais da PWM.
 unsigned long sinal; //Variável responsável por memorizar o valor da PWM.
-int cont = 0;
 
 void setup() {
   Serial.begin(9600); //Inicializa o SerialMonitor.
