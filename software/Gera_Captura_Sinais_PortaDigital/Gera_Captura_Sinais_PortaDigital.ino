@@ -4,7 +4,6 @@ int Recpin = 4; //Porta responsável por ler os sinais da PWM.
 int PWMpin = 9; //Porta responsável por gerar o PWM.
 unsigned long taxa; //Variável responsável por memorizar o valor da PWM.
 int sinal = 50; //Representa a porcentagem do sinal da PWM, que varia de 0 a 255.
-int cont = 0;//Contador usado pra evitar que o valor do sinal ultrapasse 255.
 
 void setup() {
   Serial.begin(9600); //Inicializa o SerialMonitor.
