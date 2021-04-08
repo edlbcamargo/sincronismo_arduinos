@@ -34,7 +34,7 @@ void setup(){//Prepara o programa.
  Nanoport = new Serial(this, portNano, 9600); 
 
  // joga fora a primeira leitura, diminui a chance de pegar a mensagem no meio
- try {
+ try { //Try catch do arduino uno
    Unoport.clear();
    while (Unoport.readStringUntil(lf) == null){
      println("Preso no while Unoport");
@@ -44,13 +44,12 @@ void setup(){//Prepara o programa.
    UnoString = null;
  } 
  catch (Exception e){ 
-   println("Deu algum xabu no Unoport");
+   println("Deu algum problema no Unoport");
  } 
  finally{
    println("Os ciclos do while Unoport foram: ", times);   
  }
- 
- try {
+ try { //Try catch do arduino uno
    Nanoport.clear();
    while (Nanoport.readStringUntil(lf) == null){
      println("Preso no while Nanoport");
@@ -60,20 +59,17 @@ void setup(){//Prepara o programa.
    NanoString = null;
  } 
  catch (Exception e){
-   println("Deu algum xabu no Nanoport");  
+   println("Deu algum problema no Nanoport");  
  }
  finally {
    println("Os ciclos do while do Unoport foram: ", times);
-   println("Os ciclos do while do Nanoport foram: ", vezes);
-     
+   println("Os ciclos do while do Nanoport foram: ", vezes);     
  }
- 
  // cria colunas da tabela
  table.addColumn("Contagem");
  table.addColumn("Sinal 1");
  table.addColumn("Sinal 2");
 }
-
 void draw(){
   if (Unoport.available() > 0 && Nanoport.available() > 0){ // a leitura da serial deve ficar aqui dentro!
     UnoString = Unoport.readStringUntil(lf);
