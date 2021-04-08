@@ -14,7 +14,7 @@ int vezes = 0;
 
 int lf = 10; // Nova linha (Linefeed) em ASCII.
 String UnoString = null; // String onde sera guardada a mensagem lida pelo arduino Uno.
-String NanoString = null; //Serve para guardar a mernsagem do Nano.
+String NanoString = null; //Serve para guardar a mensagem do Nano.
 
 void setup(){//Prepara o programa.
  String portUno = Serial.list()[0]; // Porta no Windows é a primeira, use para o Uno.
