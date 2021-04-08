@@ -10,7 +10,7 @@ Table table; //Cria uma variável tabela que serve pra armazenar os dados.
 int numLeituras = 51; //Essa variável serve para limitar o número de leituras.
 int numCount = 1; //Essa serve para contar o número de leituras.
 int times = 0;
-int vezes = 0;
+int vezes = 0; //Essas variáveis servem para contar o número de vezes que o try/catch rodou.
 
 int lf = 10; // Nova linha (Linefeed) em ASCII.
 String UnoString = null; // String onde sera guardada a mensagem lida pelo arduino Uno.
