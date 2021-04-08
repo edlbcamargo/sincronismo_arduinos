@@ -26,7 +26,7 @@ void setup(){//Prepara o programa.
  
  table = new Table();
  
- // Inicializa as porta.
+ // Inicializa as portas.
  Unoport = new Serial(this, portUno, 9600);
  Nanoport = new Serial(this, portNano, 9600); 
 
