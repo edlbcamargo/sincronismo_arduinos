@@ -19,8 +19,6 @@ String NanoString = null; //Serve para guardar a mensagem do Nano.
 void setup(){//Prepara o programa.
  String portUno = Serial.list()[0]; // Porta no Windows é a primeira, use para o Uno.
  String portNano = Serial.list()[1]; // Porta do Nano.
- //String portUno = Serial.list()[Serial.list().length -2];
- //String portNano = Serial.list()[Serial.list().length -1];// porta no Linux é a última
  println("Portas seriais disponiveis:");
  println(Serial.list());
  println("Portas seriais em uso:");
@@ -28,8 +26,7 @@ void setup(){//Prepara o programa.
  
  table = new Table();
  
- // Inicializa a porta
- //Unoport = new Serial(this, portNum, 9600);
+ // Inicializa as portas
  Unoport = new Serial(this, portUno, 9600);
  Nanoport = new Serial(this, portNano, 9600); 
 
