@@ -1,0 +1,48 @@
+#include <Wire.h>
+
+boolean partida = false;
+#define autoslaveve 0x01
+#define slave 0x02
+
+int Recpin = 4; //Porta responsável por ler os sinais da PWM.
+int PWMpin = 9; //Porta responsável por gerar o PWM.
+unsigned long taxa; //Variável responsável por memorizar o valor da PWM.
+int sinal = 50; //Representa a porcentagem do sinal da PWM, que varia de 0 a 255.
+int cont = 0;
+
+void setup() {
+  Serial.begin(9600); //Inicializa o SerialMonitor.
+  pinMode(Recpin, INPUT); //Define o Recpin (8) como entrada que lerá os sinais.
+  pinMode(PWMpin, OUTPUT); //Define o PWMpin como saída, emissor da PWM.
+  Serial.println("Início da leitura"); //Marca o início dos dados.
+  Wire.begin(autoslave);
+}
+
+void loop() {
+  if (sinal > 255){
+    sinal = 5;
+  }
+  
+  analogWrite(PWMpin, sinal); //Evia o valor do PWM.
+  
+  if (cont==0){
+    partida = true;
+    Wire.beginTransmission(autoslave);
+    Wire.write(partida);
+    Wire.endTransmission();
+    
+    Wire.beginTransmission(slave);
+    Wire.write(partida);
+    Wire.endTransmission();
+    cont = 1;
+    delay(10000);
+  }
+  if (partida==true){//Verifica se há sinal HIGH a ser recebido na porta.
+    taxa = pulseInLong(Recpin, HIGH); //Grava o valor lido pela função pulseInLong, que 
+    //mede o tempo em que a entrada da porta ficou HIGH.
+    Serial.println(taxa);//Exibe no SerialMonitor o tempo lido.     
+  }
+
+  sinal = sinal + 10; // altera duty cycle a ser usado no proximo loop
+  
+}
