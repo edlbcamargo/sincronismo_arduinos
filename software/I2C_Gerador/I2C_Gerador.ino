@@ -7,12 +7,12 @@
 
 #define NPICOS 2
 
-byte partida = 200;
-int PWMpin = 9; //Porta responsável por gerar o PWM.
+byte partida = 200; 
+int PWMpin = 6; //Porta responsável por gerar o PWM.
 int event = 10; //Porta que recebe um byte do slave dizendo que terminou a coleta de sinais. 
 int diff; //Usada para imprimir a diferença entre os arduinos.
 int val1[99], val2[99]; //Armazena o valor lido pelos slaves e imprime no serialMonitor.
-int sinal = 5; //Representa a porcentagem do sinal da PWM, que varia de 0 a 255.
+int sinal = 0; //Representa a porcentagem do sinal da PWM, que varia de 0 a 255.
 int cont = 0; //Contador para limitar a quantidade de leituras.
 
 void setup() {
@@ -20,7 +20,7 @@ void setup() {
   pinMode(PWMpin, OUTPUT); //Define o PWMpin como saída, emissor da PWM.
   Serial.println("Início da leitura"); //Marca o início dos dados.
   analogWrite(PWMpin, sinal); //Envia o PWM.
-  
+  digitalWrite(PWMpin, LOW);
 
 }
 
@@ -31,14 +31,18 @@ void loop() {
   for (int k = 0; k<10; k++){
     for (sinal = 5; sinal<255; sinal = sinal + 25){
       analogWrite(PWMpin, sinal); //Envia o PWM.
-      delayMicroseconds(100); //Intervalo para controle da frequência. De acordo com a biblioteca, a função analogRead dos slaves leva 100 microsegundos para ler.
+      delay(50); //Intervalo para controle da frequência. De acordo com a biblioteca, a função analogRead dos slaves leva 100 microsegundos para ler.
     }
+    digitalWrite(PWMpin, HIGH);
+    delay(5);
+    digitalWrite(PWMpin, LOW);
+    delay(5);
   }
-  delay(1000); 
+  analogWrite(PWMpin, 0);
+  //delay(0); 
   // A ideia destas funções aqui é pegar a medida dos picos que cada slave fez pela quantidade.
   ReceiveData(SLAVE1, NPICOS);
   ReceiveData(SLAVE2, NPICOS);
-
 //Calcula a diferença dos picos e manda pela serial
   
 }
