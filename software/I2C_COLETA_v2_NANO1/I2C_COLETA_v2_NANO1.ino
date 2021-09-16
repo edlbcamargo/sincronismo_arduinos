@@ -1,5 +1,5 @@
 #include <Wire.h>
-#define SLAVE 0x03
+#define SLAVE 0x02
 
 // usar sempre menos de 255, pois a gente guarda o índice num char
 #define NPONTOS 20
@@ -49,12 +49,9 @@ void loop() {
     }
   }*/
   for (int i = cont; i < NPONTOS; i++){
-    
-    kont[i] = (char)NPONTOS;
-    mediu = 1;
-    NPICOS - 1;
+    kont[i] = 30;
   }
-  
+  mediu = 1;
 }
 
 void receiveEvent(){
