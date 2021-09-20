@@ -1,0 +1,80 @@
+Teste de sincronismo utilizando comunicação I2C.
+
+
+___________________________________________________________________________________
+Fluxo do Loop:
+ - Master (Arduino Uno) envia o número de subidas (NPICOS) desejado pela I2C para cada Slave, para iniciar a coleta.
+ - Slaves (Arduino Nano) coletam sinal
+ - Slaves procuram índices das subidas nos valores
+ - Slaves enviam valores dos índices pela I2C
+ - Master calcula informações e imprime pela serial.
+
+___________________________________________________________________________________
+Ligações:
+ - Comunicação:
+   [Master: A4] -- [Slave1: A4] -- [Slave2: A4]
+   [Master: A5] -- [Slave1: A5] -- [Slave2: A5]
+
+ - Alimentação:
+   [Master: 5V] -- [Slave1: Vin] -- [Slave2: Vin]
+   [Master: GND] -- [Slave1: GND] -- [Slave2: GND]
+   
+ - Sinal (onda quadrada):
+   [Master: D6] -- [Slave1: A2] -- [Slave2: A2]
+
+ - Jumper para definição de endereço do Slave (só para Slave2):
+   [Slave2: D4] -- [Slave2: GND]
+
+
+___________________________________________________________________________________
+Saída na serial (Master):
+
+Inicio da leitura
+0: 37	35	2	Atraso:	0.21ms
+1: 55	53	2	Atraso:	0.21ms
+2: 73	71	2	Atraso:	0.21ms
+3: 91	89	2	Atraso:	0.21ms
+1: Periodo	18	18	Freq Sinal:	533.33	533.33
+2: Periodo	18	18	Freq Sinal:	533.33	533.33
+3: Periodo	18	18	Freq Sinal:	533.33	533.33
+ 
+0: 37	35	2	Atraso:	0.21ms
+1: 55	53	2	Atraso:	0.21ms
+2: 73	71	2	Atraso:	0.21ms
+3: 91	89	2	Atraso:	0.21ms
+1: Periodo	18	18	Freq Sinal:	533.33	533.33
+2: Periodo	18	18	Freq Sinal:	533.33	533.33
+3: Periodo	18	18	Freq Sinal:	533.33	533.33
+ 
+0: 37	35	2	Atraso:	0.21ms
+1: 55	53	2	Atraso:	0.21ms
+2: 73	71	2	Atraso:	0.21ms
+3: 91	89	2	Atraso:	0.21ms
+1: Periodo	18	18	Freq Sinal:	533.33	533.33
+2: Periodo	18	18	Freq Sinal:	533.33	533.33
+3: Periodo	18	18	Freq Sinal:	533.33	533.33
+ 
+0: 37	35	2	Atraso:	0.21ms
+1: 55	53	2	Atraso:	0.21ms
+2: 73	71	2	Atraso:	0.21ms
+3: 91	89	2	Atraso:	0.21ms
+1: Periodo	18	18	Freq Sinal:	533.33	533.33
+2: Periodo	18	18	Freq Sinal:	533.33	533.33
+3: Periodo	18	18	Freq Sinal:	533.33	533.33
+ 
+0: 37	35	2	Atraso:	0.21ms
+1: 55	53	2	Atraso:	0.21ms
+2: 73	71	2	Atraso:	0.21ms
+3: 91	89	2	Atraso:	0.21ms
+1: Periodo	18	18	Freq Sinal:	533.33	533.33
+2: Periodo	18	18	Freq Sinal:	533.33	533.33
+3: Periodo	18	18	Freq Sinal:	533.33	533.33
+ 
+0: 37	35	2	Atraso:	0.21ms
+1: 55	53	2	Atraso:	0.21ms
+2: 73	71	2	Atraso:	0.21ms
+3: 91	89	2	Atraso:	0.21ms
+1: Periodo	18	18	Freq Sinal:	533.33	533.33
+2: Periodo	18	18	Freq Sinal:	533.33	533.33
+3: Periodo	18	18	Freq Sinal:	533.33	533.33
+
