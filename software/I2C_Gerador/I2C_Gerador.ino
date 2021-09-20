@@ -25,6 +25,11 @@ void setup() {
   Serial.flush();
   //analogWrite(PWMpin, sinal); //Envia o PWM.
   digitalWrite(PWMpin, LOW);
+  Wire.begin(); 
+  for (int num = 0; num < NPICOS; num++){
+    val1[num] = 4;
+    val2[num] = 5;
+  }
 
 }
 
@@ -48,7 +53,23 @@ void loop() {
   ReceiveData(SLAVE1, NPICOS);
   ReceiveData(SLAVE2, NPICOS);
 //Calcula a diferença dos picos e manda pela serial
-  
+
+  for (int num = 0; num < NPICOS; num++){
+    diff = val1[num] - val2[num];
+    Serial.print(num);
+    Serial.print(": ");
+    Serial.print(val1[num]);
+    Serial.flush();
+    Serial.print('\t'); // Espaçamento equivalente a um Tab
+    Serial.flush();
+    Serial.print(val2[num]);
+    Serial.flush();
+    Serial.print('\t');
+    Serial.flush();
+    Serial.println(diff);
+    Serial.flush(); 
+  }  
+  delay(1000);
 }
 
 //Não precisa armazenar, pode enviar direto para a serial.
@@ -68,19 +89,7 @@ void ReceiveData(int placa, int i){
     }
   }
 
-  for (int num = 0; num < NPICOS; num++){
-    diff = val1[num] - val2[num];
-    Serial.print(val1[num]);
-    Serial.flush();
-    Serial.print('\t'); // Espaçamento equivalente a um Tab
-    Serial.flush();
-    Serial.print(val2[num]);
-    Serial.flush();
-    Serial.print('\t');
-    Serial.flush();
-    Serial.println(diff);
-    Serial.flush(); 
-  }
+
 }
 void ComecaLeitura(){
   Serial.println("1");

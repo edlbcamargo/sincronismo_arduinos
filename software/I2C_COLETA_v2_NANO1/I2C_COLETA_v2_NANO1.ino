@@ -1,5 +1,5 @@
 #include <Wire.h>
-#define SLAVE 0x02
+#define SLAVE 0x03
 
 // usar sempre menos de 255, pois a gente guarda o índice num char
 #define NPONTOS 20
@@ -48,20 +48,22 @@ void loop() {
         kont[idx] = (char)0;
     }
   }*/
-  for (int i = cont; i < NPONTOS; i++){
-    kont[i] = 30;
+  for (int i = 0; i < NPONTOS; i++){
+    kont[i] = 30+10*i;
   }
-  mediu = 1;
+  
 }
 
 void receiveEvent(){
   
   partida = Wire.read();
+  mediu = 1;
 }
 
 void receiveRequest(){
   if (mediu == 1){
-    Wire.write(kont); //Envia o número de medidas para o master.
+    Wire.write(kont, 2); //Envia o número de medidas para o master.
+    mediu = 0;
     
   }
 }
