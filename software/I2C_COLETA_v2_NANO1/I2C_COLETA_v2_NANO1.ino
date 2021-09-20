@@ -49,7 +49,8 @@ void loop() {
     }
   }*/
   for (int i = 0; i < NPONTOS; i++){
-    kont[i] = 30+10*i;
+    //kont[i] = 20+1*i;   // SLAVE 0x02
+    kont[i] = 30+10*i;    // SLAVE 0x03
   }
   
 }
