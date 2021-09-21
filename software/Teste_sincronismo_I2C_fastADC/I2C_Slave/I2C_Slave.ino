@@ -30,7 +30,7 @@ void setup(){
   Wire.onReceive(receiveEvent);   // Registra evento.
   Wire.onRequest(receiveRequest); // Registra request.
 
-  setup_ADC(2, PS_16, true, NPONTOS, sinal, NULL);  // Configura o ADC com 8bits
+  setup_ADC(SIGN_PIN, PS_16, true, NPONTOS, sinal, NULL);  // Configura o ADC com 8bits
   
   mediu = 0;
 }
