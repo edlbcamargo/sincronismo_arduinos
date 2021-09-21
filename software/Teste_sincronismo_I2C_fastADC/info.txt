@@ -1,0 +1,84 @@
+Teste de sincronismo utilizando comunicação I2C.
+A coleta pelo ADC é controlada por interrupção, muito mais rápido que usando AnalogRead().
+
+
+___________________________________________________________________________________
+Fluxo do Loop:
+ - Master (Arduino Uno) envia o número de subidas (NPICOS) desejado pela I2C para cada Slave, para iniciar a coleta.
+ - Slaves (Arduino Nano) coletam sinal.
+ - Slaves procuram índices das subidas nos valores.
+ - Slaves enviam valores dos índices pela I2C.
+ - Master calcula informações e imprime pela serial.
+
+___________________________________________________________________________________
+Ligações:
+ - Comunicação:
+   [Master: A4] -- [Slave1: A4] -- [Slave2: A4]
+   [Master: A5] -- [Slave1: A5] -- [Slave2: A5]
+
+ - Alimentação:
+   [Master: 5V] -- [Slave1: Vin] -- [Slave2: Vin]
+   [Master: GND] -- [Slave1: GND] -- [Slave2: GND]
+   
+ - Sinal (onda quadrada):
+   [Master: D6] -- [Slave1: A2] -- [Slave2: A2]
+
+ - Jumper para definição de endereço do Slave (só para Slave2):
+   [Slave2: D4] -- [Slave2: GND]
+
+
+___________________________________________________________________________________
+Saída na serial (Master):
+
+Inicio da leitura
+0: 76	59	17	Atraso:	0.22ms
+1: 93	76	17	Atraso:	0.22ms
+2: 108	91	17	Atraso:	0.22ms
+3: 124	107	17	Atraso:	0.22ms
+4: 140	123	17	Atraso:	0.22ms
+1: Periodo	17	17	Freq Sinal:	4523.53	4523.53
+2: Periodo	15	15	Freq Sinal:	5126.67	5126.67
+3: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+4: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+ 
+0: 77	60	17	Atraso:	0.22ms
+1: 93	76	17	Atraso:	0.22ms
+2: 109	91	18	Atraso:	0.23ms
+3: 125	107	18	Atraso:	0.23ms
+4: 141	124	17	Atraso:	0.22ms
+1: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+2: Periodo	16	15	Freq Sinal:	4806.25	5126.67
+3: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+4: Periodo	16	17	Freq Sinal:	4806.25	4523.53
+ 
+0: 77	60	17	Atraso:	0.22ms
+1: 93	76	17	Atraso:	0.22ms
+2: 109	91	18	Atraso:	0.23ms
+3: 125	108	17	Atraso:	0.22ms
+4: 141	124	17	Atraso:	0.22ms
+1: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+2: Periodo	16	15	Freq Sinal:	4806.25	5126.67
+3: Periodo	16	17	Freq Sinal:	4806.25	4523.53
+4: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+ 
+0: 77	59	18	Atraso:	0.23ms
+1: 93	75	18	Atraso:	0.23ms
+2: 109	91	18	Atraso:	0.23ms
+3: 125	107	18	Atraso:	0.23ms
+4: 141	123	18	Atraso:	0.23ms
+1: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+2: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+3: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+4: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+ 
+0: 77	59	18	Atraso:	0.23ms
+1: 93	76	17	Atraso:	0.22ms
+2: 109	91	18	Atraso:	0.23ms
+3: 125	107	18	Atraso:	0.23ms
+4: 140	123	17	Atraso:	0.22ms
+1: Periodo	16	17	Freq Sinal:	4806.25	4523.53
+2: Periodo	16	15	Freq Sinal:	4806.25	5126.67
+3: Periodo	16	16	Freq Sinal:	4806.25	4806.25
+4: Periodo	15	16	Freq Sinal:	5126.67	4806.25
+ 
+
