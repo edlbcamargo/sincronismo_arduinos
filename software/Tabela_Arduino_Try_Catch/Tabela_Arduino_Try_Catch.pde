@@ -26,11 +26,11 @@ void setup(){//Prepara o programa.
  
  table = new Table();
  
- // Inicializa as portas
+ // Inicializa as portas.
  Unoport = new Serial(this, portUno, 9600);
  Nanoport = new Serial(this, portNano, 9600); 
 
- // joga fora a primeira leitura, diminui a chance de pegar a mensagem no meio
+ // joga fora as leituras com erro.
  try { //Try catch do arduino uno
    Unoport.clear();
    while (Unoport.readStringUntil(lf) == null){
